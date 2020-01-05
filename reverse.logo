@@ -1,0 +1,32 @@
+; Naive UCB Logo version of REVERSE
+; See http://e-scribe.com/news/193
+
+to shuffle :list
+  make "newlist []
+  until [empty? :list] [
+    make "num pick :list
+    make "newlist fput :num :newlist
+    make "list remove :num :list ]
+  output :newlist
+end
+
+to leftflip :howmany :list
+    output (sentence 
+      (reverse filter [# < :howmany+1] :list) 
+      (filter [# > :howmany] :list))
+end
+
+make "sorted [1 2 3 4 5 6 7 8 9]
+make "numbers shuffle :sorted
+make "steps 0
+
+until [:numbers = :sorted] [
+  print :numbers
+  print [Reverse how many?] 
+  make "howmany readword 
+  make "numbers leftflip :howmany :numbers
+  make "steps :steps + 1 ]
+
+print (sentence [Done! That took you] :steps [steps.])
+
+bye
